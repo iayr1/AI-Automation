@@ -1,290 +1,386 @@
+Awesome — here’s a polished, GitHub-ready **`README.md`** you can drop straight into your repo.
+
+```markdown
 # 🐝 SocialBee AI
 
-**AI-powered social media automation** — Schedule and cross-post to Instagram, Facebook, WhatsApp, and LinkedIn from a single Python platform
+**AI-powered social media automation** — schedule and cross-post to Instagram, Facebook, WhatsApp (Cloud API), and LinkedIn from a single Python platform.
 
 <div align="center">
 
-![CI](https://img.shields.io/github/actions/workflow/status/your-org/socialbee-ai/ci.yml)
-![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)
+[![CI](https://img.shields.io/github/actions/workflow/status/your-org/socialbee-ai/ci.yml?label=CI)](https://github.com/your-org/socialbee-ai/actions)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 ![Python](https://img.shields.io/badge/python-3.10%2B-blue.svg)
 ![Docker](https://img.shields.io/badge/docker-ready-2496ED.svg)
 
-[**Quick Start**](#quick-start) • [**Features**](#features) • [**Installation**](#installation) • [**Usage**](#usage-examples) • [**Contributing**](#contributing)
+**[Quick Start](#quick-start)** • **[Features](#project-features)** • **[Install](#installation)** • **[Usage](#usage-examples)** • **[CLI](#cli-reference)** • **[Contributing](#contributing)**
 
 </div>
 
+---
+
 ## Project Features
 
-🤖 **AI Content Generation** — Transform briefs and links into platform-specific captions and hashtags  
-📅 **Smart Scheduling** — Queue posts with time windows and auto-optimized timing  
-🔄 **Cross-Platform Publishing** — Post to Instagram, Facebook, LinkedIn, and WhatsApp Business  
-🖼️ **Media Pipeline** — Auto-resize images, fix aspect ratios, and generate alt-text  
-🎯 **Campaign Management** — Templates, UTM tracking, and link shortening  
-📊 **Analytics Integration** — Pull engagement metrics where available  
-🔌 **Plugin Architecture** — Easily add new platforms via simple `Publisher` interface
+- 🤖 **AI Content Generation** — Transform briefs and links into platform-specific captions and hashtags  
+- 📅 **Smart Scheduling** — Queue posts with time windows and auto-optimized timing  
+- 🔄 **Cross-Platform Publishing** — Post to Instagram, Facebook, LinkedIn, and WhatsApp Business  
+- 🖼️ **Media Pipeline** — Auto-resize images, fix aspect ratios, and generate alt-text  
+- 🎯 **Campaign Management** — Templates, UTM tracking, and link shortening  
+- 📊 **Analytics Integration** — Pull engagement metrics where available  
+- 🔌 **Plugin Architecture** — Easily add new platforms via a simple `Publisher` interface
+
+---
 
 ## Architecture
 
+```
+
 socialbee-ai/
 ├── 🧠 socialbee/
-│ ├── 🤖 ai/ # AI content generation
-│ ├── 🖼️ media/ # Image processing & optimization
-│ ├── 📱 platforms/ # Social platform integrations
-│ │ ├── base.py # Abstract publisher interface
-│ │ ├── instagram.py # Instagram API integration
-│ │ ├── facebook.py # Facebook Pages API
-│ │ ├── linkedin.py # LinkedIn API
-│ │ └── whatsapp.py # WhatsApp Cloud API
-│ ├── ⏰ scheduler/ # Job scheduling & queuing
-│ ├── 💾 store/ # Data persistence
-│ └── 🛠️ utils/ # Helper functions
+│   ├── 🤖 ai/                 # AI content generation
+│   ├── 🖼️ media/              # Image processing & optimization
+│   ├── 📱 platforms/          # Social platform integrations
+│   │   ├── base.py            # Abstract publisher interface
+│   │   ├── instagram.py       # Instagram API integration
+│   │   ├── facebook.py        # Facebook Pages API
+│   │   ├── linkedin.py        # LinkedIn API
+│   │   └── whatsapp.py        # WhatsApp Cloud API
+│   ├── ⏰ scheduler/           # Job scheduling & queuing
+│   ├── 💾 store/              # Data persistence
+│   └── 🛠️ utils/              # Helper functions
 ├── 📚 examples/
-│ ├── content_plan.yaml # Sample campaign
-│ └── post.json # Example post data
-├── 🖥️ cli.py # Command-line interface
-├── 🌐 server.py # Web API server
-├── ⚙️ .env.example # Environment template
+│   ├── content\_plan.yaml      # Sample campaign
+│   └── post.json              # Example post data
+├── 🖥️ cli.py                  # Command-line interface
+├── 🌐 server.py               # Web API server (optional)
+├── ⚙️ .env.example            # Environment template
 └── 📖 README.md
 
-text
+````
+
+---
 
 ## Quick Start
 
-**Prerequisites:**
-- 🐍 Python 3.10+
-- 🔑 API access for your target platforms
-- 📦 Virtual environment (recommended)
+**Prerequisites**
+- 🐍 Python **3.10+**
+- 🔑 API access/tokens for target platforms
+- 📦 Virtual environment (recommended) or Docker
 
-**Installation:**
-Step 1: Clone the repository
+**Installation**
+```bash
+# Step 1: Clone the repository
 git clone https://github.com/your-org/socialbee-ai.git
-
-Step 2: Navigate to the project directory
 cd socialbee-ai
 
-Step 3: Set up virtual environment
+# Step 2: Set up virtual environment
 python -m venv .venv
-source .venv/bin/activate # Windows: .venv\Scripts\activate
+# macOS/Linux
+source .venv/bin/activate
+# Windows (PowerShell)
+# .\.venv\Scripts\Activate.ps1
 
-Step 4: Install dependencies
-pip install -U pip
+# Step 3: Install dependencies
+python -m pip install -U pip
 pip install -r requirements.txt
+````
 
-text
+**Configuration**
 
-**Configuration:**
-
-1. **Copy environment template**
+```bash
+# Copy env template
 cp .env.example .env
+```
 
-text
+Fill your `.env`:
 
-2. **Add your API keys** to `.env` file
-AI Services
-OPENAI_API_KEY=your_openai_key_here
+| Key                      | Description                           |
+| ------------------------ | ------------------------------------- |
+| `OPENAI_API_KEY`         | API key for AI captioning/hashtags    |
+| `INSTAGRAM_ACCESS_TOKEN` | Instagram (Basic Display/Graph) token |
+| `FACEBOOK_ACCESS_TOKEN`  | Facebook Graph API token              |
+| `LINKEDIN_ACCESS_TOKEN`  | LinkedIn API token                    |
+| `WHATSAPP_ACCESS_TOKEN`  | WhatsApp Cloud API token              |
 
-Social Platforms
-INSTAGRAM_ACCESS_TOKEN=your_instagram_token
-FACEBOOK_ACCESS_TOKEN=your_facebook_token
-LINKEDIN_ACCESS_TOKEN=your_linkedin_token
-WHATSAPP_ACCESS_TOKEN=your_whatsapp_token
+> Ensure your app has the correct **scopes/permissions** for each platform (read + publish where required).
 
-text
-
-3. **Ensure proper API permissions** for each platform
+---
 
 ## Usage Examples
 
-**Test Your Setup (Dry Run)**
+**1) Test Your Setup (Dry Run)**
+
+```bash
 python cli.py plan examples/content_plan.yaml --dry-run
+```
 
-text
+**2) Single Platform Post**
 
-**Single Platform Post**
-python cli.py post
---platform instagram
---caption "Launch day! 🚀 #MyProduct"
---media ./assets/launch.jpg
+```bash
+python cli.py post \
+  --platform instagram \
+  --caption "Launch day! 🚀 #MyProduct" \
+  --media ./assets/launch.jpg
+```
 
-text
+**3) Cross-Platform Post**
 
-**Cross-Platform Post**
-python cli.py post
---platform instagram facebook linkedin
---caption-file examples/post.json
---media ./assets/launch.jpg
+```bash
+python cli.py post \
+  --platform instagram facebook linkedin \
+  --caption-file examples/post.json \
+  --media ./assets/launch.jpg
+```
 
-text
+**4) Schedule Campaign**
 
-**Schedule Campaign**
-Schedule posts from plan
+```bash
+# Queue posts from a plan
 python cli.py schedule examples/content_plan.yaml
 
-Run worker to process scheduled posts
+# Run a worker to process the queue
 python cli.py worker --concurrency 2
+```
 
-text
+---
 
-## Example Content Plan
+## Example Content Plan (YAML)
 
-Create powerful campaigns with YAML configuration:
-
+```yaml
 campaign: "August Launch 🚀"
 
 defaults:
-utm: "utm_source={platform}&utm_medium=social&utm_campaign=aug-launch"
-hashtags: ["#startups", "#product", "#launch"]
-media_dir: "./assets"
-time_window:
-start: "09:00"
-end: "20:00"
+  utm: "utm_source={platform}&utm_medium=social&utm_campaign=aug-launch"
+  hashtags: ["#startups", "#product", "#launch"]
+  media_dir: "./assets"
+  time_window:
+    start: "09:00"
+    end: "20:00"
 
 posts:
+  - brief: "Announce launch, focus on benefits for freelancers."
+    media: "launch.jpg"
+    platforms: ["instagram", "facebook", "linkedin"]
+    schedule: "2025-08-20T10:30:00+05:30"
 
-brief: "Announce launch, focus on benefits for freelancers."
-media: "launch.jpg"
-platforms: ["instagram", "facebook", "linkedin"]
-schedule: "2025-08-20T10:30:00+05:30"
+  - brief: "How it works carousel"
+    media: ["step1.png", "step2.png", "step3.png"]
+    platforms: ["instagram", "linkedin"]
+    schedule: "2025-08-22T18:00:00+05:30"
+```
 
-brief: "How it works carousel"
-media: ["step1.png", "step2.png", "step3.png"]
-platforms: ["instagram", "linkedin"]
-schedule: "2025-08-22T18:00:00+05:30"
-
-text
+---
 
 ## Publisher Interface
 
-Extend SocialBee AI with custom platforms:
+Extend SocialBee AI by implementing a custom `Publisher`.
 
+```python
+# socialbee/platforms/base.py
+from __future__ import annotations
 from abc import ABC, abstractmethod
-from typing import List, Optional
+from dataclasses import dataclass
+from typing import List, Optional, Dict, Any
 
+@dataclass
 class PostResult:
-def init(self, success: bool, post_id: Optional[str] = None, error: Optional[str] = None):
-self.success = success
-self.post_id = post_id
-self.error = error
+    success: bool
+    post_id: Optional[str] = None
+    error: Optional[str] = None
+    extra: Optional[Dict[str, Any]] = None
 
 class Publisher(ABC):
-name: str
+    """Base interface for all publishers."""
+    name: str
 
-text
-@abstractmethod
-def publish(self, caption: str, media_paths: List[str]) -> PostResult:
-    """Publish content to the platform"""
-    ...
+    @abstractmethod
+    def publish(self, caption: str, media_paths: List[str]) -> PostResult:
+        """Publish content to the platform."""
+        raise NotImplementedError
 
-@abstractmethod
-def analytics(self, post_id: str) -> dict:
-    """Retrieve post analytics"""
-    ...
-text
+    @abstractmethod
+    def analytics(self, post_id: str) -> Dict[str, Any]:
+        """Retrieve post analytics for a given post_id."""
+        raise NotImplementedError
+```
+
+*Example skeleton for a new platform:*
+
+```python
+# socialbee/platforms/myplatform.py
+from .base import Publisher, PostResult
+from typing import List, Dict, Any
+
+class MyPlatform(Publisher):
+    name = "myplatform"
+
+    def publish(self, caption: str, media_paths: List[str]) -> PostResult:
+        # TODO: Implement API call
+        try:
+            # resp = call_api(...)
+            return PostResult(success=True, post_id="12345")
+        except Exception as e:
+            return PostResult(success=False, error=str(e))
+
+    def analytics(self, post_id: str) -> Dict[str, Any]:
+        # TODO: Implement analytics call
+        return {"post_id": post_id, "likes": 0, "comments": 0}
+```
+
+---
 
 ## Docker Support
 
-Run SocialBee AI in containers:
+**Build & Run**
 
-Build image
+```bash
+# Build image
 docker build -t socialbee-ai .
 
-Run worker
-docker run --env-file .env
--v $(pwd)/assets:/app/assets
-socialbee-ai python cli.py worker
+# Run worker
+docker run --rm --env-file .env \
+  -v "$(pwd)/assets:/app/assets" \
+  socialbee-ai python cli.py worker
+```
 
-text
+**docker-compose.yml (optional)**
+
+```yaml
+version: "3.8"
+services:
+  worker:
+    build: .
+    image: socialbee-ai:latest
+    env_file: .env
+    volumes:
+      - ./assets:/app/assets
+    command: ["python", "cli.py", "worker", "--concurrency", "2"]
+
+  api:
+    build: .
+    image: socialbee-ai:latest
+    env_file: .env
+    ports:
+      - "8000:8000"
+    command: ["python", "server.py"]
+```
+
+Start:
+
+```bash
+docker compose up --build
+```
+
+---
 
 ## What technologies are used for this project?
 
-This project is built with:
-- Python 3.10+
-- OpenAI API
-- Instagram Basic Display API
-- Facebook Graph API
-- LinkedIn API
-- WhatsApp Cloud API
-- Docker
-- YAML configuration
-- Asyncio for scheduling
+* Python **3.10+**
+* OpenAI API
+* Instagram (Basic Display/Graph)
+* Facebook Graph API
+* LinkedIn API
+* WhatsApp Cloud API
+* Docker
+* YAML configuration
+* Asyncio-based scheduling
+
+---
 
 ## CLI Reference
 
-General help
-python cli.py --help
+**General Help**
 
-Command-specific help
+```bash
+python cli.py --help
+```
+
+**Command Help**
+
+```bash
 python cli.py post --help
 python cli.py schedule --help
 python cli.py worker --help
+```
 
-Available commands
-python cli.py plan # Preview content plan
-python cli.py post # Publish immediately
-python cli.py schedule # Queue posts for later
-python cli.py worker # Process scheduled posts
-python cli.py analytics # View post performance
+**Available Commands**
 
-text
+```bash
+python cli.py plan       # Preview content plan
+python cli.py post       # Publish immediately
+python cli.py schedule   # Queue posts for later
+python cli.py worker     # Process scheduled posts
+python cli.py analytics  # View post performance
+```
+
+---
 
 ## Security & Privacy
 
-- 🚫 **Never commit API tokens** — Use `.env` files or secure secret managers
-- 🔐 **Minimal permissions** — Request only the scopes you need
-- 📝 **Audit logs** — Monitor all posting activity
-- 🛡️ **Data protection** — Avoid logging sensitive information
+* 🚫 **Never commit API tokens** — use `.env` or a secret manager
+* 🔐 **Minimal permissions** — request only required scopes
+* 📝 **Audit logs** — monitor all posting activity
+* 🛡️ **Data protection** — avoid logging sensitive information
+
+---
 
 ## Legal & Platform Compliance
 
-- 📜 **Terms of Service** — Follow each platform's guidelines
-- ✅ **App Review** — Some features require platform approval
-- 📧 **WhatsApp Marketing** — Requires approved message templates
-- 🏢 **Business Use** — Ensure proper commercial licensing
+* 📜 **Terms of Service** — follow each platform’s rules
+* ✅ **App Review** — some features require approval
+* 📧 **WhatsApp Marketing** — approved message templates needed
+* 🏢 **Business Use** — ensure proper commercial licensing
+
+---
 
 ## Roadmap
 
-- [ ] 👥 **Team Workspaces** — Multi-user collaboration and role management
-- [ ] 🎨 **Design Integration** — Import from Canva and Figma
-- [ ] 🎥 **Video Support** — Auto-captions and video optimization
-- [ ] 🧠 **Smart Timing** — AI-powered best-time-to-post predictions
-- [ ] 🌐 **Web Dashboard** — Browser-based campaign management
-- [ ] 📈 **Advanced Analytics** — Detailed performance insights
-- [ ] 🔄 **Content Recycling** — Automatically repost top performers
-- [ ] 🌍 **Multi-language** — International content support
+* [ ] 👥 **Team Workspaces** — multi-user collaboration & roles
+* [ ] 🎨 **Design Integration** — import from Canva/Figma
+* [ ] 🎥 **Video Support** — auto-captions & optimization
+* [ ] 🧠 **Smart Timing** — AI best-time-to-post
+* [ ] 🌐 **Web Dashboard** — browser-based management
+* [ ] 📈 **Advanced Analytics** — detailed insights
+* [ ] 🔄 **Content Recycling** — repost top performers
+* [ ] 🌍 **Multi-language** — international support
+
+---
 
 ## Contributing
 
-We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
+We welcome contributions! Please see our **Contributing Guide** (`CONTRIBUTING.md`).
 
-There are several ways of contributing to this project:
+**Using GitHub Issues**
 
-**Use GitHub Issues**
-- [🐛 Report Bug](https://github.com/your-org/socialbee-ai/issues)
-- [💡 Request Feature](https://github.com/your-org/socialbee-ai/issues)
+* 🐛 Report Bug: [https://github.com/your-org/socialbee-ai/issues](https://github.com/your-org/socialbee-ai/issues)
+* 💡 Request Feature: [https://github.com/your-org/socialbee-ai/issues](https://github.com/your-org/socialbee-ai/issues)
 
 **Submit Pull Requests**
-Follow these steps:
-Step 1: Fork the repository
-Step 2: Create your feature branch
+
+```bash
+# Step 1: Fork
+# Step 2: Create a feature branch
 git checkout -b feature/AmazingFeature
 
-Step 3: Commit your changes
-git commit -m 'Add some AmazingFeature'
+# Step 3: Commit
+git commit -m "feat: add AmazingFeature"
 
-Step 4: Push to the branch
+# Step 4: Push
 git push origin feature/AmazingFeature
 
-Step 5: Open a Pull Request
-text
+# Step 5: Open a Pull Request
+```
 
 **Edit a file directly in GitHub**
-- Navigate to the desired file(s)
-- Click the "Edit" button (pencil icon) at the top right of the file view
-- Make your changes and commit the changes
+
+1. Navigate to the file
+2. Click the **pencil** icon
+3. Make changes and commit
+
+---
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+Licensed under the **MIT License** — see [LICENSE](LICENSE).
 
 ---
 
@@ -295,4 +391,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 [⭐ Star this repo](https://github.com/your-org/socialbee-ai) • [🐛 Report Bug](https://github.com/your-org/socialbee-ai/issues) • [💡 Request Feature](https://github.com/your-org/socialbee-ai/issues)
 
 </div>
-This version follows the same clean, simple formatting style as your Lovable project example - no escaped characters, proper markdown syntax, and clear section organization that will render perfectly on GitHub.
+```
+
+If you want, I can also generate a matching **`.env.example`**, **`requirements.txt`**, and a minimal **`cli.py`** skeleton next so the README’s commands run out of the box.
