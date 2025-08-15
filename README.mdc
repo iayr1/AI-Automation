@@ -29,28 +29,28 @@
 
 ## 🏗️ Architecture
 
-```
 socialbee-ai/
 ├── 🧠 socialbee/
-│   ├── 🤖 ai/              # AI content generation
-│   ├── 🖼️  media/           # Image processing & optimization
-│   ├── 📱 platforms/       # Social platform integrations
-│   │   ├── base.py         # Abstract publisher interface
-│   │   ├── instagram.py    # Instagram API integration
-│   │   ├── facebook.py     # Facebook Pages API
-│   │   ├── linkedin.py     # LinkedIn API
-│   │   └── whatsapp.py     # WhatsApp Cloud API
-│   ├── ⏰ scheduler/       # Job scheduling & queuing
-│   ├── 💾 store/           # Data persistence
-│   └── 🛠️  utils/          # Helper functions
+│ ├── 🤖 ai/ # AI content generation
+│ ├── 🖼️ media/ # Image processing & optimization
+│ ├── 📱 platforms/ # Social platform integrations
+│ │ ├── base.py # Abstract publisher interface
+│ │ ├── instagram.py # Instagram API integration
+│ │ ├── facebook.py # Facebook Pages API
+│ │ ├── linkedin.py # LinkedIn API
+│ │ └── whatsapp.py # WhatsApp Cloud API
+│ ├── ⏰ scheduler/ # Job scheduling & queuing
+│ ├── 💾 store/ # Data persistence
+│ └── 🛠️ utils/ # Helper functions
 ├── 📚 examples/
-│   ├── content_plan.yaml   # Sample campaign
-│   └── post.json          # Example post data
-├── 🖥️ cli.py              # Command-line interface
-├── 🌐 server.py           # Web API server
-├── ⚙️ .env.example        # Environment template
+│ ├── content_plan.yaml # Sample campaign
+│ └── post.json # Example post data
+├── 🖥️ cli.py # Command-line interface
+├── 🌐 server.py # Web API server
+├── ⚙️ .env.example # Environment template
 └── 📖 README.md
-```
+
+text
 
 ---
 
@@ -64,38 +64,38 @@ socialbee-ai/
 
 ### Installation
 
-```bash
-# Clone the repository
+Clone the repository
 git clone https://github.com/your-org/socialbee-ai.git
 cd socialbee-ai
 
-# Set up virtual environment
+Set up virtual environment
 python -m venv .venv
-source .venv/bin/activate  # Windows: .venv\Scripts\activate
+source .venv/bin/activate # Windows: .venv\Scripts\activate
 
-# Install dependencies
+Install dependencies
 pip install -U pip
 pip install -r requirements.txt
-```
+
+text
 
 ### Configuration
 
 1. **Copy environment template**
-   ```bash
-   cp .env.example .env
-   ```
+cp .env.example .env
+
+text
 
 2. **Add your API keys** to `.env` file
-   ```env
-   # AI Services
-   OPENAI_API_KEY=your_openai_key_here
-   
-   # Social Platforms
-   INSTAGRAM_ACCESS_TOKEN=your_instagram_token
-   FACEBOOK_ACCESS_TOKEN=your_facebook_token
-   LINKEDIN_ACCESS_TOKEN=your_linkedin_token
-   WHATSAPP_ACCESS_TOKEN=your_whatsapp_token
-   ```
+AI Services
+OPENAI_API_KEY=your_openai_key_here
+
+Social Platforms
+INSTAGRAM_ACCESS_TOKEN=your_instagram_token
+FACEBOOK_ACCESS_TOKEN=your_facebook_token
+LINKEDIN_ACCESS_TOKEN=your_linkedin_token
+WHATSAPP_ACCESS_TOKEN=your_whatsapp_token
+
+text
 
 3. **Ensure proper API permissions** for each platform
 
@@ -104,34 +104,34 @@ pip install -r requirements.txt
 ## 💡 Usage Examples
 
 ### 🧪 Test Your Setup (Dry Run)
-```bash
 python cli.py plan examples/content_plan.yaml --dry-run
-```
+
+text
 
 ### 📝 Single Platform Post
-```bash
-python cli.py post \
-  --platform instagram \
-  --caption "Launch day! 🚀 #MyProduct" \
-  --media ./assets/launch.jpg
-```
+python cli.py post
+--platform instagram
+--caption "Launch day! 🚀 #MyProduct"
+--media ./assets/launch.jpg
+
+text
 
 ### 🌐 Cross-Platform Post
-```bash
-python cli.py post \
-  --platform instagram facebook linkedin \
-  --caption-file examples/post.json \
-  --media ./assets/launch.jpg
-```
+python cli.py post
+--platform instagram facebook linkedin
+--caption-file examples/post.json
+--media ./assets/launch.jpg
+
+text
 
 ### ⏰ Schedule Campaign
-```bash
-# Schedule posts from plan
+Schedule posts from plan
 python cli.py schedule examples/content_plan.yaml
 
-# Run worker to process scheduled posts
+Run worker to process scheduled posts
 python cli.py worker --concurrency 2
-```
+
+text
 
 ---
 
@@ -139,28 +139,29 @@ python cli.py worker --concurrency 2
 
 Create powerful campaigns with YAML configuration:
 
-```yaml
 campaign: "August Launch 🚀"
 
 defaults:
-  utm: "utm_source={platform}&utm_medium=social&utm_campaign=aug-launch"
-  hashtags: ["#startups", "#product", "#launch"]
-  media_dir: "./assets"
-  time_window: 
-    start: "09:00"
-    end: "20:00"
+utm: "utm_source={platform}&utm_medium=social&utm_campaign=aug-launch"
+hashtags: ["#startups", "#product", "#launch"]
+media_dir: "./assets"
+time_window:
+start: "09:00"
+end: "20:00"
 
 posts:
-  - brief: "Announce launch, focus on benefits for freelancers."
-    media: "launch.jpg"
-    platforms: ["instagram", "facebook", "linkedin"]
-    schedule: "2025-08-20T10:30:00+05:30"
-    
-  - brief: "How it works carousel"
-    media: ["step1.png", "step2.png", "step3.png"]
-    platforms: ["instagram", "linkedin"]
-    schedule: "2025-08-22T18:00:00+05:30"
-```
+
+brief: "Announce launch, focus on benefits for freelancers."
+media: "launch.jpg"
+platforms: ["instagram", "facebook", "linkedin"]
+schedule: "2025-08-20T10:30:00+05:30"
+
+brief: "How it works carousel"
+media: ["step1.png", "step2.png", "step3.png"]
+platforms: ["instagram", "linkedin"]
+schedule: "2025-08-22T18:00:00+05:30"
+
+text
 
 ---
 
@@ -168,29 +169,29 @@ posts:
 
 Extend SocialBee AI with custom platforms:
 
-```python
 from abc import ABC, abstractmethod
 from typing import List, Optional
 
 class PostResult:
-    def __init__(self, success: bool, post_id: Optional[str] = None, error: Optional[str] = None):
-        self.success = success
-        self.post_id = post_id
-        self.error = error
+def init(self, success: bool, post_id: Optional[str] = None, error: Optional[str] = None):
+self.success = success
+self.post_id = post_id
+self.error = error
 
 class Publisher(ABC):
-    name: str
+name: str
 
-    @abstractmethod
-    def publish(self, caption: str, media_paths: List[str]) -> PostResult:
-        """Publish content to the platform"""
-        ...
+text
+@abstractmethod
+def publish(self, caption: str, media_paths: List[str]) -> PostResult:
+    """Publish content to the platform"""
+    ...
 
-    @abstractmethod
-    def analytics(self, post_id: str) -> dict:
-        """Retrieve post analytics"""
-        ...
-```
+@abstractmethod
+def analytics(self, post_id: str) -> dict:
+    """Retrieve post analytics"""
+    ...
+text
 
 ---
 
@@ -198,36 +199,36 @@ class Publisher(ABC):
 
 Run SocialBee AI in containers:
 
-```bash
-# Build image
+Build image
 docker build -t socialbee-ai .
 
-# Run worker
-docker run --env-file .env \
-  -v $(pwd)/assets:/app/assets \
-  socialbee-ai python cli.py worker
-```
+Run worker
+docker run --env-file .env
+-v $(pwd)/assets:/app/assets
+socialbee-ai python cli.py worker
+
+text
 
 ---
 
 ## 🖥️ CLI Reference
 
-```bash
-# General help
+General help
 python cli.py --help
 
-# Command-specific help
+Command-specific help
 python cli.py post --help
 python cli.py schedule --help
 python cli.py worker --help
 
-# Available commands
-python cli.py plan      # Preview content plan
-python cli.py post      # Publish immediately
-python cli.py schedule  # Queue posts for later
-python cli.py worker    # Process scheduled posts
+Available commands
+python cli.py plan # Preview content plan
+python cli.py post # Publish immediately
+python cli.py schedule # Queue posts for later
+python cli.py worker # Process scheduled posts
 python cli.py analytics # View post performance
-```
+
+text
 
 ---
 
