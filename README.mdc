@@ -7,14 +7,15 @@ Awesome — here’s a polished, GitHub-ready **`README.md`** you can drop strai
 
 <div align="center">
 
-[!https://img.shields.io/github/actions/workflow/status/your-org/socialbee-ai/ci.yml?label=CI)](https://github.com/your-org/socialbee-ai/actions)
+[![CI](https://img.shields.io/github/actions/workflow/status/mayurchaudhari/socialbee-ai/ci.yml?branch=main)](https://github.com/mayurchaudhari/socialbee-ai/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 ![Python](https://img.shields.io/badge/python-3.10%2B-blue.svg)
 ![Docker](https://img.shields.io/badge/docker-ready-2496ED.svg)
 
-**[Quick Start](#quick-start)** • **[Features](#project-features)** • **[Install](#installation)** • **[Usage](#usage-examples)** • **[CLI](#cli-reference)** • **[Contributing](#contributing)**
+[**Quick Start**](#quick-start) • [**Features**](#project-features) • [**Install**](#installation) • [**Usage**](#usage-examples) • [**CLI**](#cli-reference) • [**Contributing**](#contributing)
 
 </div>
+
 
 ---
 
