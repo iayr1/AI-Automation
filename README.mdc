@@ -7,7 +7,7 @@ Awesome — here’s a polished, GitHub-ready **`README.md`** you can drop strai
 
 <div align="center">
 
-[![CI](https://img.shields.io/github/actions/workflow/status/mayurchaudhari/socialbee-ai/ci.yml?branch=main)](https://github.com/mayurchaudhari/socialbee-ai/actions)
+[![CI](https://github.com/mayurchaudhari/socialbee-ai/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/mayurchaudhari/socialbee-ai/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 ![Python](https://img.shields.io/badge/python-3.10%2B-blue.svg)
 ![Docker](https://img.shields.io/badge/docker-ready-2496ED.svg)
@@ -15,6 +15,7 @@ Awesome — here’s a polished, GitHub-ready **`README.md`** you can drop strai
 [**Quick Start**](#quick-start) • [**Features**](#project-features) • [**Install**](#installation) • [**Usage**](#usage-examples) • [**CLI**](#cli-reference) • [**Contributing**](#contributing)
 
 </div>
+
 
 
 ---
