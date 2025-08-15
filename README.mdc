@@ -1,6 +1,6 @@
 # 🐝 SocialBee AI
 
-> **AI-powered social media automation** — Schedule and cross-post to Instagram, Facebook, WhatsApp, and LinkedIn from a single Python platform
+**AI-powered social media automation** — Schedule and cross-post to Instagram, Facebook, WhatsApp, and LinkedIn from a single Python platform
 
 <div align="center">
 
@@ -9,13 +9,11 @@
 ![Python](https://img.shields.io/badge/python-3.10%2B-blue.svg)
 ![Docker](https://img.shields.io/badge/docker-ready-2496ED.svg)
 
-[**Quick Start**](#-quick-start) • [**Features**](#-features) • [**Installation**](#-installation) • [**Documentation**](#-cli-usage) • [**Contributing**](#-roadmap)
+[**Quick Start**](#quick-start) • [**Features**](#features) • [**Installation**](#installation) • [**Usage**](#usage-examples) • [**Contributing**](#contributing)
 
 </div>
 
----
-
-## ✨ Features
+## Project Features
 
 🤖 **AI Content Generation** — Transform briefs and links into platform-specific captions and hashtags  
 📅 **Smart Scheduling** — Queue posts with time windows and auto-optimized timing  
@@ -25,9 +23,7 @@
 📊 **Analytics Integration** — Pull engagement metrics where available  
 🔌 **Plugin Architecture** — Easily add new platforms via simple `Publisher` interface
 
----
-
-## 🏗️ Architecture
+## Architecture
 
 socialbee-ai/
 ├── 🧠 socialbee/
@@ -52,33 +48,31 @@ socialbee-ai/
 
 text
 
----
+## Quick Start
 
-## 🚀 Quick Start
-
-### Prerequisites
-
+**Prerequisites:**
 - 🐍 Python 3.10+
 - 🔑 API access for your target platforms
 - 📦 Virtual environment (recommended)
 
-### Installation
-
-Clone the repository
+**Installation:**
+Step 1: Clone the repository
 git clone https://github.com/your-org/socialbee-ai.git
+
+Step 2: Navigate to the project directory
 cd socialbee-ai
 
-Set up virtual environment
+Step 3: Set up virtual environment
 python -m venv .venv
 source .venv/bin/activate # Windows: .venv\Scripts\activate
 
-Install dependencies
+Step 4: Install dependencies
 pip install -U pip
 pip install -r requirements.txt
 
 text
 
-### Configuration
+**Configuration:**
 
 1. **Copy environment template**
 cp .env.example .env
@@ -99,16 +93,14 @@ text
 
 3. **Ensure proper API permissions** for each platform
 
----
+## Usage Examples
 
-## 💡 Usage Examples
-
-### 🧪 Test Your Setup (Dry Run)
+**Test Your Setup (Dry Run)**
 python cli.py plan examples/content_plan.yaml --dry-run
 
 text
 
-### 📝 Single Platform Post
+**Single Platform Post**
 python cli.py post
 --platform instagram
 --caption "Launch day! 🚀 #MyProduct"
@@ -116,7 +108,7 @@ python cli.py post
 
 text
 
-### 🌐 Cross-Platform Post
+**Cross-Platform Post**
 python cli.py post
 --platform instagram facebook linkedin
 --caption-file examples/post.json
@@ -124,7 +116,7 @@ python cli.py post
 
 text
 
-### ⏰ Schedule Campaign
+**Schedule Campaign**
 Schedule posts from plan
 python cli.py schedule examples/content_plan.yaml
 
@@ -133,9 +125,7 @@ python cli.py worker --concurrency 2
 
 text
 
----
-
-## 📋 Example Content Plan
+## Example Content Plan
 
 Create powerful campaigns with YAML configuration:
 
@@ -163,9 +153,7 @@ schedule: "2025-08-22T18:00:00+05:30"
 
 text
 
----
-
-## 🔌 Publisher Interface
+## Publisher Interface
 
 Extend SocialBee AI with custom platforms:
 
@@ -193,9 +181,7 @@ def analytics(self, post_id: str) -> dict:
     ...
 text
 
----
-
-## 🐳 Docker Support
+## Docker Support
 
 Run SocialBee AI in containers:
 
@@ -209,9 +195,20 @@ socialbee-ai python cli.py worker
 
 text
 
----
+## What technologies are used for this project?
 
-## 🖥️ CLI Reference
+This project is built with:
+- Python 3.10+
+- OpenAI API
+- Instagram Basic Display API
+- Facebook Graph API
+- LinkedIn API
+- WhatsApp Cloud API
+- Docker
+- YAML configuration
+- Asyncio for scheduling
+
+## CLI Reference
 
 General help
 python cli.py --help
@@ -230,27 +227,21 @@ python cli.py analytics # View post performance
 
 text
 
----
-
-## 🔒 Security & Privacy
+## Security & Privacy
 
 - 🚫 **Never commit API tokens** — Use `.env` files or secure secret managers
 - 🔐 **Minimal permissions** — Request only the scopes you need
 - 📝 **Audit logs** — Monitor all posting activity
 - 🛡️ **Data protection** — Avoid logging sensitive information
 
----
-
-## ⚖️ Legal & Platform Compliance
+## Legal & Platform Compliance
 
 - 📜 **Terms of Service** — Follow each platform's guidelines
 - ✅ **App Review** — Some features require platform approval
 - 📧 **WhatsApp Marketing** — Requires approved message templates
 - 🏢 **Business Use** — Ensure proper commercial licensing
 
----
-
-## 🗺️ Roadmap
+## Roadmap
 
 - [ ] 👥 **Team Workspaces** — Multi-user collaboration and role management
 - [ ] 🎨 **Design Integration** — Import from Canva and Figma
@@ -261,21 +252,37 @@ text
 - [ ] 🔄 **Content Recycling** — Automatically repost top performers
 - [ ] 🌍 **Multi-language** — International content support
 
----
-
-## 🤝 Contributing
+## Contributing
 
 We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
 
-1. 🍴 Fork the repository
-2. 🔧 Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. ✅ Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. 📤 Push to the branch (`git push origin feature/AmazingFeature`)
-5. 🔍 Open a Pull Request
+There are several ways of contributing to this project:
 
----
+**Use GitHub Issues**
+- [🐛 Report Bug](https://github.com/your-org/socialbee-ai/issues)
+- [💡 Request Feature](https://github.com/your-org/socialbee-ai/issues)
 
-## 📄 License
+**Submit Pull Requests**
+Follow these steps:
+Step 1: Fork the repository
+Step 2: Create your feature branch
+git checkout -b feature/AmazingFeature
+
+Step 3: Commit your changes
+git commit -m 'Add some AmazingFeature'
+
+Step 4: Push to the branch
+git push origin feature/AmazingFeature
+
+Step 5: Open a Pull Request
+text
+
+**Edit a file directly in GitHub**
+- Navigate to the desired file(s)
+- Click the "Edit" button (pencil icon) at the top right of the file view
+- Make your changes and commit the changes
+
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
@@ -288,3 +295,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 [⭐ Star this repo](https://github.com/your-org/socialbee-ai) • [🐛 Report Bug](https://github.com/your-org/socialbee-ai/issues) • [💡 Request Feature](https://github.com/your-org/socialbee-ai/issues)
 
 </div>
+This version follows the same clean, simple formatting style as your Lovable project example - no escaped characters, proper markdown syntax, and clear section organization that will render perfectly on GitHub.
